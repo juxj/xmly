@@ -1,0 +1,86 @@
+spring:
+  rabbitmq:
+    host: dev.mq.ximalayaart.com
+    port: 5672
+    username: app.data
+    password: app.data
+    template:
+      exchange: xmly-data
+
+  data:
+    solr:
+      host:  http://dev.solr.ximalayaart.com/solr
+    mongodb:
+      host: dev.mongo.ximalayaart.com
+      port: 27017
+      uri: mongodb://dev.mongo.ximalayaart.com:27017/test
+#      repositories:
+#        enabled: true
+#      zk-host: dev.zk.ximalayaart.com:2181
+  datasource:
+    url: jdbc:mysql://dev.db.ximalayaart.com:3306/art?zeroDateTimeBehavior=convertToNull&useUnicode=true&useSSL=false&autoReconnect=true&characterEncoding=utf8
+    username: app
+    password: app
+  redis:
+    host: dev.redis.ximalayaart.com
+    port: 6379
+    database: 1
+  quartz:
+    properties:
+server:
+  port: 9023
+logging:
+  file: /var/tmp/logs/data.log
+  level:
+    com.xmly.art: debug
+    me.juxj: debug
+    org.springframword: warn
+
+mybatis:
+  mapper-locations: classpath:/mapper/*.xml
+  type-aliases-package: com.xmly.art.entiy.po
+
+
+app:
+  redis:
+    server: dev.redis.ximalayaart.com
+    port: 6379
+    connections: 20
+  wx:
+    mp:
+      appId: wx546355787a9656d5
+      secret: 3de9611219280b92512360bb11fea47a
+      redirect: redirect:/acc/wxOAuth/%s
+      hostname: h5.juxj.me
+  ali:
+    sms:
+      accessKey: LTAIR9QJc4K4EcpF
+      secretKey: 9uSM11kjfzOsKFsABz7edHgIXWAwMv
+      signature: 喜马拉雅ART
+      template: SMS_101250129
+    oss:
+      appId: LTAI8wXcjDPExeb2
+      secret: iB3B4ZC2ydcTbWaAaF3yU0rIXdzDw1
+      roleArn: acs:ram::1864288998313375:role/aliyunosstokengeneratorrole
+      roleSessionName: external-username
+      endpoint: sts.aliyuncs.com
+  file:
+    local:
+      idCard: /var/www/html/wx/id/
+      avatar: /var/www/html/wx/ava/
+      art:  /var/www/html/wx/art/
+    image:
+      suffix: .jpg
+
+  mq:
+    exchange:
+      data: xmly-data
+    queue:
+      wx_id_card: wxIdCard
+      wx_avatar:  wxAvatar
+      dl_wx_id_card: dlWxIdCard
+      dl_wx_avatar: dlWxAvatar
+      college: college
+      exhibition: exhibition
+      major: major
+      college_major: collegeMajor
